@@ -805,13 +805,8 @@ html,body{
     </p>
 
     <div class="vsl-wrap">
-      <div class="vsl-box">
-        <vturb-smartplayer id="vid-69d3c588d1523c28395b25a1" style="display:block;width:100%;height:100%;position:absolute;inset:0;z-index:4;"></vturb-smartplayer>
-        <script type="text/javascript">
-          var s=document.createElement("script");
-          s.src="https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69d3c588d1523c28395b25a1/v4/player.js";
-          s.async=!0;document.head.appendChild(s);
-        </script>
+      <div class="vsl-box" id="vslBox">
+        <!-- player injetado via JS no momento da transição -->
       </div>
     </div>
 
@@ -893,16 +888,27 @@ function pick(btn,qn,score){
 }
 
 function finish(){
-  // Fluxo único: oculta quiz, exibe seção de vendas na mesma página
+  // Oculta quiz, exibe seção de vendas
   document.getElementById('progressBar').style.display='none';
   document.getElementById('qArea').style.display='none';
   var vsl = document.getElementById('vslSection');
   vsl.style.display='flex';
   setTimeout(function(){ vsl.classList.add('active'); },10);
   window.scrollTo({top:0, behavior:'smooth'});
-  // Inicia o timer do CTA (18m40s = 1120s)
+
+  // Injeta o player Vturb agora — evita autoplay antes da hora
+  var box = document.getElementById('vslBox');
+  var player = document.createElement('vturb-smartplayer');
+  player.id = 'vid-69d3c588d1523c28395b25a1';
+  player.style.cssText = 'display:block;width:100%;height:100%;position:absolute;inset:0;z-index:4;';
+  box.appendChild(player);
+  var s = document.createElement('script');
+  s.src = 'https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69d3c588d1523c28395b25a1/v4/player.js';
+  s.async = true;
+  document.head.appendChild(s);
+
+  // Timer CTA: 18m40s = 1120s
   setTimeout(showCta, 1120 * 1000);
-  // Listener para evento de tempo do player Vturb
   window.addEventListener('message', function(e){
     try{
       var d = typeof e.data==='string' ? JSON.parse(e.data) : e.data;
