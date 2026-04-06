@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escolhida Para Sempre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --red:#8d111c;
+  --red-bright:#c41a2a;
+  --red-glow:rgba(141,17,28,0.5);
+  --bg:#040204;
+  --surface:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.08);
+  --border-red:rgba(141,17,28,0.3);
+  --text:#f0eaf0;
+  --muted:#8a7a8a;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ping{0%{transform:scale(1);opacity:1}100%{transform:scale(2.4);opacity:0}}
+@keyframes stars-drift{from{transform:translateY(0)}to{transform:translateY(-2000px)}}
+@keyframes vsl-breathe{0%,100%{box-shadow:0 0 60px rgba(141,17,28,0.2),0 32px 80px rgba(0,0,0,0.6)}50%{box-shadow:0 0 90px rgba(141,17,28,0.35),0 32px 80px rgba(0,0,0,0.6)}}
+@keyframes pulse-red{0%,100%{box-shadow:0 6px 28px rgba(141,17,28,0.55)}50%{box-shadow:0 8px 48px rgba(196,26,42,0.85),0 0 0 8px rgba(141,17,28,0.1)}}
+@keyframes cta-reveal{from{opacity:0;transform:translateY(32px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+
+@property --ga{syntax:"<angle>";initial-value:0deg;inherits:false}
+
+html,body{
+  min-height:100vh;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── STARS ── */
+.stars-sm,.stars-md{position:fixed;top:0;left:0;pointer-events:none;z-index:0}
+.stars-sm{
+  width:1px;height:1px;background:transparent;
+  box-shadow:
+    124px 200px #fff,432px 80px #fff,756px 310px #fff,1100px 44px #fff,
+    230px 600px #fff,890px 720px #fff,1350px 430px #fff,600px 1100px #fff,
+    1600px 900px #fff,340px 1400px #fff,1780px 1200px #fff,70px 1700px #fff,
+    950px 350px #fff,1450px 650px #fff,280px 900px #fff,1050px 1500px #fff;
+  animation:stars-drift 60s linear infinite;
+}
+.stars-md{
+  width:2px;height:2px;background:transparent;
+  box-shadow:
+    500px 150px rgba(255,255,255,0.7),950px 400px rgba(255,255,255,0.7),
+    200px 750px rgba(255,255,255,0.7),1300px 250px rgba(255,255,255,0.7),
+    680px 1300px rgba(255,255,255,0.7),1580px 700px rgba(255,255,255,0.7);
+  animation:stars-drift 90s linear infinite;
+}
+
+/* ── AMBIENT ── */
+.glow-top{
+  position:fixed;top:-150px;left:50%;
+  width:700px;height:500px;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(141,17,28,0.14) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.glow-mid{
+  position:fixed;top:50%;left:50%;
+  width:900px;height:900px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(141,17,28,0.05) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+.grid-overlay{
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.022) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── PAGE ── */
+.page{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:72px 20px 80px;
+}
+
+/* ── HEADLINE ── */
+.headline{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(26px,5vw,48px);
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:-0.5px;
+  color:#fff;
+  text-align:center;
+  max-width:760px;
+  margin-bottom:20px;
+  animation:fadeUp 0.7s ease 0.1s both;
+}
+.headline em{
+  font-style:normal;
+  background:linear-gradient(90deg,#c41a2a,#e84060);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ── SUBHEADLINE ── */
+.sub{
+  font-size:clamp(15px,2.5vw,19px);
+  color:var(--muted);
+  text-align:center;
+  line-height:1.7;
+  max-width:580px;
+  margin-bottom:52px;
+  animation:fadeUp 0.7s ease 0.2s both;
+}
+
+/* ── DIVIDER LINE ── */
+.divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--red-bright),transparent);
+  margin:0 auto 52px;
+  animation:fadeUp 0.7s ease 0.25s both;
+}
+
+/* ── VSL PLAYER ── */
+.vsl-wrap{
+  width:100%;max-width:380px;
+  animation:fadeUp 0.8s ease 0.3s both;
+}
+
+.vsl-box{
+  width:100%;
+  aspect-ratio:9/16;
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  animation:vsl-breathe 4s ease-in-out infinite;
+  border:1px solid rgba(141,17,28,0.2);
+}
+
+/* Outer glow ring */
+.vsl-box::before{
+  content:'';
+  position:absolute;inset:-2px;
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(141,17,28,0.4),transparent 50%,rgba(141,17,28,0.15));
+  z-index:5;pointer-events:none;
+}
+
+/* Corner accents */
+.vsl-box::after{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg,rgba(141,17,28,0.15) 0%,transparent 25%),
+    linear-gradient(315deg,rgba(141,17,28,0.08) 0%,transparent 25%);
+  z-index:5;pointer-events:none;
+}
+
+/* ── CTA BLOCK ── */
+.cta-block{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  margin-top:40px;
+  width:100%;
+  max-width:420px;
+  animation:cta-reveal 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.cta-block.visible{
+  display:flex;
+}
+
+.cta-label{
+  font-family:'Manrope',sans-serif;
+  font-size:12px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(196,26,42,0.7);
+  text-align:center;
+}
+
+.cta-btn{
+  position:relative;overflow:hidden;
+  width:100%;
+  border-radius:14px;
+  padding:20px 40px;
+  background:var(--red-bright);
+  border:none;
+  cursor:pointer;
+  font-family:'Manrope',sans-serif;
+  font-size:16px;font-weight:800;
+  letter-spacing:0.5px;text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform 0.2s,background 0.2s;
+  animation:pulse-red 2.4s infinite;
+  box-shadow:0 6px 28px rgba(141,17,28,0.55);
+}
+.cta-btn::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.12) 50%,transparent 60%);
+  background-size:200% auto;
+  animation:shimmer 3s linear infinite;
+}
+.cta-btn:hover{
+  transform:scale(1.03);
+  background:#d41e30;
+}
+
+.cta-guarantee{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:rgba(255,255,255,0.3);
+  letter-spacing:0.3px;
+}
+
+@media(max-width:600px){
+  .page{padding:52px 16px 64px}
+  .headline{font-size:22px;letter-spacing:-0.2px}
+  .sub{font-size:15px}
+  .vsl-wrap{max-width:300px}
+  .cta-btn{font-size:14px;padding:18px 24px}
+}
+</style>
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+<script>
+  window.pixelId = "69c14b9b24398db96c8c2a20";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+</head>
+<body>
+
+<div class="stars-sm"></div>
+<div class="stars-md"></div>
+<div class="glow-top"></div>
+<div class="glow-mid"></div>
+<div class="grid-overlay"></div>
+
+<div class="page">
+
+  <h1 class="headline">
+    Se você sente que tem algo errado…<br>
+    mas não sabe exatamente o quê…<br>
+    <em>o que você vai ver agora vai deixar tudo claro</em>
+  </h1>
+
+  <div class="divider"></div>
+
+  <p class="sub">
+    Existe um padrão no comportamento masculino que faz ele se afastar —<br>
+    e outro que faz ele se apegar
+  </p>
+
+  <!-- VSL -->
+  <div class="vsl-wrap">
+    <div class="vsl-box">
+      <vturb-smartplayer id="vid-69d3c588d1523c28395b25a1" style="display:block;width:100%;height:100%;position:absolute;inset:0;z-index:4;"></vturb-smartplayer>
+      <script type="text/javascript">
+        var s=document.createElement("script");
+        s.src="https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69d3c588d1523c28395b25a1/v4/player.js";
+        s.async=!0;document.head.appendChild(s);
+      </script>
+    </div>
+  </div>
+
+  <!-- CTA — aparece em 18m40s (1120 segundos) -->
+  <div class="cta-block" id="ctaBlock">
+    <p class="cta-label">Oferta especial desbloqueada</p>
+    <a href="https://pay.hotmart.com/escolhidaprasempre" class="cta-btn" id="ctaBtn">
+      <span>QUERO SER ESCOLHIDA PARA SEMPRE</span>
+      <span style="font-size:20px">→</span>
+    </a>
+    <p class="cta-guarantee">🔒 Garantia de 14 dias · Acesso imediato</p>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var DELAY = 18 * 60 + 40; // 1120 segundos
+  var shown = false;
+
+  function showCta(){
+    if(shown) return;
+    shown = true;
+    var block = document.getElementById('ctaBlock');
+    block.classList.add('visible');
+    block.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  // Timer fixo de segurança — garante que o botão apareça no tempo certo
+  setTimeout(showCta, DELAY * 1000);
+
+  // Listener para o evento de tempo do player Vturb (se disponível)
+  window.addEventListener('message', function(e){
+    try {
+      var data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+      if(data && data.currentTime && data.currentTime >= DELAY){
+        showCta();
+      }
+    } catch(err){}
+  });
+})();
+</script>
+
+</body>
+</html>
