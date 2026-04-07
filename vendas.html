@@ -395,7 +395,7 @@ body{
 /* ── AUTHOR ── */
 /* ══════════════════════════════════ */
 .author-card{display:flex;gap:32px;align-items:center;margin-top:40px}
-.author-photo{width:160px;height:160px;border-radius:20px;object-fit:cover;flex-shrink:0;border:3px solid var(--red-light)}
+.author-photo{width:320px;height:320px;border-radius:24px;object-fit:cover;flex-shrink:0;border:3px solid var(--red-light)}
 .author-name{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;color:var(--text);margin-bottom:4px}
 .author-role{font-size:13px;color:var(--red-bright);font-weight:600;margin-bottom:14px}
 .author-bio{font-size:14px;color:var(--text-soft);line-height:1.75}
@@ -438,6 +438,252 @@ body{
 /* ══════════════════════════════════ */
 /* ── RESPONSIVE ── */
 /* ══════════════════════════════════ */
+/* ══════════════════════════════════ */
+/* ── ANCORAGEM DE VALOR ── */
+/* ══════════════════════════════════ */
+.val-section{
+  position:relative;
+  background:linear-gradient(180deg,#0a0a14 0%,#0d0610 40%,#0a0a14 100%);
+  padding:100px 0 80px;
+  overflow:hidden;
+}
+#valBokeh{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+.val-container{
+  max-width:720px;margin:0 auto;
+  padding:0 24px;position:relative;z-index:2;
+}
+
+/* Reveal */
+.val-reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.val-reveal.vis{opacity:1;transform:translateY(0)}
+
+/* Headline */
+.val-headline{text-align:center;margin-bottom:48px}
+.val-eyebrow{
+  font-family:'Manrope',sans-serif;
+  font-size:11px;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(201,149,106,0.7);
+  margin-bottom:16px;
+}
+.val-title{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(28px,5vw,46px);
+  font-weight:900;line-height:1.1;
+  letter-spacing:-0.8px;
+  color:#f0eee8;
+}
+.val-glow{
+  background:linear-gradient(90deg,#c9956a,#ff6b9d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:none;
+}
+
+/* Mockup */
+.val-mockup{
+  max-width:520px;margin:0 auto 52px;
+  animation:float 5s ease-in-out infinite;
+}
+.val-mockup img{
+  width:100%;border-radius:20px;
+  box-shadow:0 20px 80px rgba(196,26,42,0.15),0 0 0 1px rgba(201,149,106,0.1);
+}
+
+/* Stack cards */
+.val-stack{
+  display:flex;flex-direction:column;
+  gap:14px;margin-bottom:48px;
+}
+.val-card{
+  display:flex;align-items:center;gap:16px;
+  padding:20px 22px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(201,149,106,0.18);
+  border-radius:16px;
+  backdrop-filter:blur(8px);
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+  transition-delay:calc(var(--delay,0) * 0.12s);
+}
+.val-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(201,149,106,0.45);
+  box-shadow:0 8px 32px rgba(201,149,106,0.1);
+}
+.val-card-icon{
+  font-size:28px;
+  width:52px;height:52px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(201,149,106,0.08);
+  border-radius:14px;flex-shrink:0;
+  border:1px solid rgba(201,149,106,0.12);
+}
+.val-card-body{flex:1;min-width:0}
+.val-card-body h3{
+  font-family:'Manrope',sans-serif;
+  font-size:15px;font-weight:800;
+  color:#f0eee8;margin-bottom:3px;
+  line-height:1.3;
+}
+.val-card-body p{
+  font-size:13px;color:rgba(240,238,232,0.45);
+  line-height:1.5;
+}
+.val-card-price{
+  display:flex;flex-direction:column;
+  align-items:flex-end;gap:4px;
+  flex-shrink:0;
+}
+.val-old{
+  font-size:13px;font-weight:600;
+  color:rgba(255,255,255,0.25);
+  text-decoration:line-through;
+}
+.val-included{
+  font-family:'Manrope',sans-serif;
+  font-size:11px;font-weight:800;
+  color:#c9956a;letter-spacing:0.5px;
+  padding:3px 10px;
+  background:rgba(201,149,106,0.1);
+  border:1px solid rgba(201,149,106,0.25);
+  border-radius:6px;
+}
+
+/* Total bar */
+.val-total{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,149,106,0.2);
+  border-radius:20px;padding:36px 32px;
+  margin-bottom:24px;text-align:center;
+}
+.val-total-row{
+  display:flex;align-items:center;
+  justify-content:center;gap:28px;
+  flex-wrap:wrap;margin-bottom:20px;
+}
+.val-total-left{text-align:center}
+.val-total-label{
+  font-size:13px;color:rgba(240,238,232,0.4);
+  margin-bottom:4px;
+}
+.val-total-old{
+  font-family:'Manrope',sans-serif;
+  font-size:28px;font-weight:800;
+  color:rgba(255,255,255,0.2);
+  text-decoration:line-through;
+}
+.val-total-arrow{
+  font-size:28px;color:rgba(201,149,106,0.4);
+}
+.val-total-right{text-align:center}
+.val-total-pay{
+  font-size:13px;color:rgba(240,238,232,0.5);
+  margin-bottom:4px;
+}
+.val-total-final{
+  font-family:'Manrope',sans-serif;
+  font-size:clamp(48px,10vw,64px);
+  font-weight:900;line-height:1;
+  background:linear-gradient(135deg,#c9956a,#ff6b9d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:glow-pulse 3s ease-in-out infinite;
+}
+.val-total-installment{
+  font-size:14px;font-weight:600;
+  color:rgba(240,238,232,0.45);margin-top:4px;
+}
+.val-total-perks{
+  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+}
+.val-total-perks span{
+  font-size:12px;font-weight:600;
+  color:rgba(100,210,100,0.7);
+}
+
+/* Urgency */
+.val-urgency{
+  text-align:center;
+  padding:14px 24px;
+  background:rgba(196,26,42,0.12);
+  border:1px solid rgba(196,26,42,0.2);
+  border-radius:10px;
+  font-size:13px;font-weight:600;
+  color:rgba(255,180,150,0.85);
+  margin-bottom:32px;
+  letter-spacing:0.2px;
+}
+
+/* CTA */
+.val-cta{text-align:center;margin-bottom:40px}
+@keyframes btn-glow{
+  0%,100%{box-shadow:0 6px 32px rgba(201,149,106,0.3),0 0 0 0 rgba(255,107,157,0)}
+  50%{box-shadow:0 8px 48px rgba(255,107,157,0.5),0 0 0 8px rgba(255,107,157,0.06)}
+}
+.val-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:100%;max-width:480px;
+  padding:22px 32px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#c9956a 0%,#ff6b9d 100%);
+  color:#fff;
+  font-family:'Manrope',sans-serif;
+  font-size:16px;font-weight:900;
+  letter-spacing:0.8px;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  animation:btn-glow 2.5s ease-in-out infinite;
+  transition:transform 0.2s;
+  position:relative;overflow:hidden;
+}
+.val-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.2) 50%,transparent 60%);
+  background-size:200% auto;
+  animation:shimmer 2.5s linear infinite;
+}
+.val-btn:hover{transform:scale(1.03)}
+.val-secure{
+  font-size:11px;color:rgba(240,238,232,0.3);
+  margin-top:14px;letter-spacing:0.3px;
+}
+
+/* Guarantee */
+.val-guarantee{
+  display:flex;align-items:center;gap:24px;
+  padding:28px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;
+}
+.val-guarantee-shield{font-size:48px;flex-shrink:0}
+.val-guarantee h3{
+  font-family:'Manrope',sans-serif;
+  font-size:18px;font-weight:800;
+  color:#f0eee8;margin-bottom:6px;
+}
+.val-guarantee p{
+  font-size:13px;color:rgba(240,238,232,0.45);
+  line-height:1.7;
+}
+.val-guarantee b{color:#c9956a;font-weight:700}
+
+@media(max-width:700px){
+  .val-card{flex-wrap:wrap}
+  .val-card-price{flex-direction:row;gap:8px;width:100%;justify-content:flex-start;margin-top:4px}
+  .val-total-row{flex-direction:column;gap:12px}
+  .val-total-arrow{transform:rotate(90deg)}
+  .val-guarantee{flex-direction:column;text-align:center}
+}
+
 @media(max-width:700px){
   .section{padding:56px 0}
   .step-card,.step-card:nth-child(even){flex-direction:column;text-align:center}
@@ -477,11 +723,12 @@ body{
     <p class="hero-sub">
       Descubra o método que já ajudou mais de 8 mil mulheres a serem escolhidas — sem joguinhos, sem manipulação.
     </p>
-    <div class="hero-cta">
-      <a href="#oferta" class="cta-btn">
-        QUERO SER ESCOLHIDA PARA SEMPRE →
-      </a>
-      <p class="cta-sub" style="color:rgba(255,255,255,0.35)">Acesso imediato após o pagamento</p>
+    <!-- scroll indicator -->
+    <div style="margin-top:48px;opacity:0.35;text-align:center">
+      <div style="width:28px;height:44px;border:2px solid rgba(255,255,255,0.4);border-radius:14px;margin:0 auto 8px;position:relative">
+        <div style="width:4px;height:10px;background:rgba(255,255,255,0.6);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:float 1.8s ease-in-out infinite"></div>
+      </div>
+      <p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:'Manrope',sans-serif">Deslize para baixo</p>
     </div>
   </div>
 </section>
@@ -663,51 +910,118 @@ body{
   </div>
 </section>
 
-<!-- ════════════ OFFER ════════════ -->
-<section class="section section-warm" id="oferta">
-  <div class="container">
-    <div class="text-center">
-      <div class="red-line"></div>
-      <h2 class="section-title">Recapitulando O Que<br><em>Você Vai Receber:</em></h2>
+<!-- ════════════ ANCORAGEM DE VALOR ════════════ -->
+<section class="val-section" id="oferta">
+  <!-- Bokeh particles -->
+  <canvas id="valBokeh"></canvas>
+
+  <div class="val-container">
+
+    <!-- BLOCO 1: HEADLINE -->
+    <div class="val-headline val-reveal">
+      <p class="val-eyebrow">OFERTA ESPECIAL</p>
+      <h2 class="val-title">Veja <span class="val-glow">tudo</span> que você vai receber hoje</h2>
     </div>
 
     <!-- PRODUCT MOCKUP -->
-    <div class="offer-mockup">
-      <img src="https://i.imgur.com/0LKgabR.png" alt="Escolhida Para Sempre — Conteúdo Completo">
+    <div class="val-mockup val-reveal">
+      <img src="https://i.imgur.com/0LKgabR.png" alt="Escolhida Para Sempre — Conteúdo">
     </div>
 
-    <div class="recap-box">
-      <ul class="recap-list">
-        <li>Os 4 passos para despertar atração emocional profunda</li>
-        <li>Como entender e usar a psicologia masculina a seu favor</li>
-        <li>Técnicas para se tornar inesquecível na mente dele</li>
-        <li>Como criar vínculo emocional que nenhuma outra teve</li>
-        <li>Manual da mulher atraente <span>(R$ 97)</span></li>
-        <li>Guia do primeiro encontro <span>(R$ 67)</span></li>
-        <li>Teste do pretendente perfeito com IA <span>(R$ 47)</span></li>
-      </ul>
-    </div>
+    <!-- BLOCO 2: STACK DE VALOR -->
+    <div class="val-stack">
+      <div class="val-card val-reveal" style="--delay:0">
+        <div class="val-card-icon">👑</div>
+        <div class="val-card-body">
+          <h3>Mulher Desejada — Treinamento Completo</h3>
+          <p>Os 4 passos para ativar a atração emocional profunda e ser escolhida para sempre</p>
+        </div>
+        <div class="val-card-price">
+          <span class="val-old">R$ 297</span>
+          <span class="val-included">Incluso</span>
+        </div>
+      </div>
 
-    <div class="price-box">
-      <p class="price-old">Valor total se comprasse separado: R$ 597</p>
-      <p class="price-label">Hoje você vai ter acesso a tudo isso por apenas:</p>
-      <p class="price-installment">12x de <b>R$ 6,90</b></p>
-      <p class="price-or">ou</p>
-      <p class="price-cash">R$ 67 <small>à vista</small></p>
-      <p class="price-note">Menos que 1 mês de Netflix</p>
-      <div style="margin-top:28px">
-        <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">QUERO SER ESCOLHIDA PARA SEMPRE →</a>
-        <p class="cta-sub">Acesso imediato após a confirmação do pagamento</p>
+      <div class="val-card val-reveal" style="--delay:1">
+        <div class="val-card-icon">✨</div>
+        <div class="val-card-body">
+          <h3>Manual da Mulher Atraente</h3>
+          <p>Técnicas de confiança e magnetismo pessoal que te tornam irresistível</p>
+        </div>
+        <div class="val-card-price">
+          <span class="val-old">R$ 97</span>
+          <span class="val-included">Incluso</span>
+        </div>
+      </div>
+
+      <div class="val-card val-reveal" style="--delay:2">
+        <div class="val-card-icon">💎</div>
+        <div class="val-card-body">
+          <h3>Guia do Primeiro Encontro</h3>
+          <p>Estratégias para causar impressão marcante e criar conexão genuína</p>
+        </div>
+        <div class="val-card-price">
+          <span class="val-old">R$ 67</span>
+          <span class="val-included">Incluso</span>
+        </div>
+      </div>
+
+      <div class="val-card val-reveal" style="--delay:3">
+        <div class="val-card-icon">🤖</div>
+        <div class="val-card-body">
+          <h3>Teste do Pretendente Perfeito com IA</h3>
+          <p>Descubra em minutos se ele tem potencial para um relacionamento sério</p>
+        </div>
+        <div class="val-card-price">
+          <span class="val-old">R$ 47</span>
+          <span class="val-included">Incluso</span>
+        </div>
       </div>
     </div>
 
-    <div class="guarantee-box">
-      <div class="guarantee-icon">🛡️</div>
+    <!-- BLOCO 3: BARRA DE VALOR TOTAL -->
+    <div class="val-total val-reveal">
+      <div class="val-total-row">
+        <div class="val-total-left">
+          <p class="val-total-label">Valor total se vendidos separadamente:</p>
+          <p class="val-total-old">R$ 508,00</p>
+        </div>
+        <div class="val-total-arrow">→</div>
+        <div class="val-total-right">
+          <p class="val-total-pay">Você paga HOJE:</p>
+          <p class="val-total-final">R$ 67</p>
+          <p class="val-total-installment">ou 12x de R$ 6,90</p>
+        </div>
+      </div>
+      <div class="val-total-perks">
+        <span>✓ Acesso imediato</span>
+        <span>✓ Sem mensalidade</span>
+        <span>✓ Para sempre</span>
+      </div>
+    </div>
+
+    <!-- BLOCO 4: URGÊNCIA -->
+    <div class="val-urgency val-reveal">
+      <span>🔥</span> Este preço é por tempo limitado. Pode subir a qualquer momento.
+    </div>
+
+    <!-- BLOCO 5: CTA -->
+    <div class="val-cta val-reveal">
+      <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="val-btn">
+        QUERO MEU ACESSO AGORA →
+      </a>
+      <p class="val-secure">🔒 Compra 100% segura · Pix, Cartão ou Boleto · Acesso em 5 minutos</p>
+    </div>
+
+    <!-- GARANTIA -->
+    <div class="val-guarantee val-reveal">
+      <div class="val-guarantee-shield">🛡️</div>
       <div>
-        <h3 class="guarantee-title">Garantia Total de 7 Dias</h3>
-        <p class="guarantee-text">Pra você se sentir ainda mais segura, eu ofereço uma garantia total de 7 dias. Se durante esse período você sentir que não é pra você, é só enviar um e-mail e eu devolvo cada centavo. <b>Zero risco para você.</b></p>
+        <h3>Garantia Total de 7 Dias</h3>
+        <p>Se durante esse período você sentir que não é pra você, é só enviar um e-mail e eu devolvo cada centavo. <b>Zero risco para você.</b></p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -791,18 +1105,59 @@ body{
 
 <!-- ════════════ SCRIPTS ════════════ -->
 <script>
-// Scroll reveal animation
+// Scroll reveal for .reveal and .val-reveal
 (function(){
-  var els = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  var els = document.querySelectorAll('.reveal,.val-reveal');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var d = getComputedStyle(e.target).getPropertyValue('--delay');
+        var ms = d ? parseInt(d)*120 : 0;
+        setTimeout(function(){
+          e.target.classList.add(e.target.classList.contains('val-reveal')?'vis':'visible');
+        }, ms);
+        obs.unobserve(e.target);
       }
     });
-  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
-  els.forEach(function(el){observer.observe(el)});
+  },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+// Bokeh particles canvas
+(function(){
+  var c = document.getElementById('valBokeh');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var particles = [];
+  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(var i=0;i<40;i++){
+    particles.push({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height,
+      r:Math.random()*3+1,
+      dx:(Math.random()-0.5)*0.3,
+      dy:(Math.random()-0.5)*0.2,
+      a:Math.random()*0.15+0.03,
+      color:Math.random()>0.5?'201,149,106':'255,107,157'
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
+      if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba('+p.color+','+p.a+')';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
 })();
 </script>
 
