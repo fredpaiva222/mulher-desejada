@@ -281,6 +281,16 @@ body{
 .bonus-title{font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px}
 .bonus-text{font-size:13px;color:var(--text-soft);line-height:1.6}
 
+/* Bonus on red bg */
+.section-bonus .bonus-card{
+  background:rgba(255,255,255,0.95);
+  border-color:rgba(255,255,255,0.3);
+}
+.section-bonus .bonus-badge{
+  background:#fff;
+  color:var(--red-bright);
+}
+
 /* ══════════════════════════════════ */
 /* ── SCIENCE ── */
 /* ══════════════════════════════════ */
@@ -840,11 +850,11 @@ body{
 </section>
 
 <!-- ════════════ BONUS ════════════ -->
-<section class="section">
+<section class="section section-bonus" style="background:var(--red-bright);color:#fff">
   <div class="container">
     <div class="text-center">
-      <div class="red-line"></div>
-      <h2 class="section-title">Além Disso, Você Vai Receber <em>de Presente:</em></h2>
+      <div class="red-line" style="background:rgba(255,255,255,0.35)"></div>
+      <h2 class="section-title" style="color:#fff">Além Disso, Você Vai Receber <em style="color:#ffd4dc">de Presente:</em></h2>
     </div>
     <div class="bonus-grid">
       <div class="bonus-card reveal">
