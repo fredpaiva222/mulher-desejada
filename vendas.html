@@ -13,26 +13,29 @@
 :root{
   --red:#8d111c;
   --red-bright:#c41a2a;
-  --red-light:rgba(196,26,42,0.08);
-  --red-border:rgba(196,26,42,0.15);
+  --red-light:rgba(196,26,42,0.06);
+  --red-border:rgba(196,26,42,0.12);
   --bg:#ffffff;
-  --bg-soft:#f8f6f6;
+  --bg-soft:#faf9f9;
   --bg-warm:#fdf8f7;
   --text:#1a1015;
   --text-soft:#5a4a55;
   --text-muted:#8a7a85;
-  --border:#eae4e8;
+  --border:#ebe6e9;
   --green:#1cb622;
-  --green-soft:rgba(28,182,34,0.08);
-  --shadow:0 2px 20px rgba(0,0,0,0.06);
-  --shadow-lg:0 8px 40px rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04);
+  --shadow:0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.09);
 }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse-red{0%,100%{box-shadow:0 6px 28px rgba(196,26,42,0.4)}50%{box-shadow:0 8px 48px rgba(196,26,42,0.7),0 0 0 8px rgba(196,26,42,0.08)}}
-@keyframes vsl-glow{0%,100%{box-shadow:0 0 40px rgba(196,26,42,0.1),0 20px 60px rgba(0,0,0,0.1)}50%{box-shadow:0 0 60px rgba(196,26,42,0.2),0 20px 60px rgba(0,0,0,0.1)}}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-red{0%,100%{box-shadow:0 6px 28px rgba(196,26,42,0.4)}50%{box-shadow:0 8px 48px rgba(196,26,42,0.7),0 0 0 8px rgba(196,26,42,0.06)}}
 @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
-@keyframes cta-reveal{from{opacity:0;transform:translateY(32px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(196,26,42,0)}50%{box-shadow:0 0 40px 4px rgba(196,26,42,0.08)}}
 
 html{scroll-behavior:smooth}
 body{
@@ -44,64 +47,49 @@ body{
 }
 
 /* ── UTILITY ── */
-.container{max-width:800px;margin:0 auto;padding:0 20px}
-.section{padding:72px 0}
+.container{max-width:820px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
 .section-alt{background:var(--bg-soft)}
 .section-warm{background:var(--bg-warm)}
 .section-dark{background:#040204;color:#f0eaf0}
-.section-red{background:var(--red);color:#fff}
+.text-center{text-align:center}
+.mx-auto{margin-left:auto;margin-right:auto}
 
-.section-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:5px 14px;border-radius:99px;
-  background:var(--red-light);
-  border:1px solid var(--red-border);
-  font-family:'Manrope',sans-serif;
-  font-size:10px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;
-  color:var(--red-bright);
-  margin-bottom:20px;
-}
-.section-tag .dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--red-bright);
-}
-
+/* ── SECTION TITLES ── */
 .section-title{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(26px,4.5vw,40px);
+  font-size:clamp(26px,4.5vw,42px);
   font-weight:800;
-  line-height:1.15;
+  line-height:1.13;
   letter-spacing:-0.5px;
   color:var(--text);
   margin-bottom:16px;
 }
-.section-title em{
-  font-style:normal;
-  color:var(--red-bright);
+.section-title em{font-style:normal;color:var(--red-bright)}
+.section-sub{
+  font-size:16px;color:var(--text-soft);
+  line-height:1.75;max-width:600px;
 }
 
-.section-sub{
-  font-size:16px;
-  color:var(--text-soft);
-  line-height:1.7;
-  max-width:600px;
+/* ── DECORATIVE RED LINE ── */
+.red-line{
+  width:48px;height:3px;
+  background:var(--red-bright);
+  border-radius:2px;
+  margin:0 auto 24px;
 }
-.text-center{text-align:center}
-.mx-auto{margin-left:auto;margin-right:auto}
 
 /* ── CTA BUTTON ── */
 .cta-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:18px 44px;
-  border-radius:12px;
+  padding:20px 48px;
+  border-radius:14px;
   background:var(--red-bright);
   color:#fff;
   font-family:'Manrope',sans-serif;
   font-size:15px;font-weight:800;
   letter-spacing:0.5px;text-transform:uppercase;
-  text-decoration:none;
-  border:none;cursor:pointer;
+  text-decoration:none;border:none;cursor:pointer;
   transition:transform 0.2s,background 0.2s;
   animation:pulse-red 2.4s infinite;
   position:relative;overflow:hidden;
@@ -113,74 +101,43 @@ body{
   animation:shimmer 3s linear infinite;
 }
 .cta-btn:hover{transform:scale(1.03);background:#d41e30}
-.cta-sub{
-  font-size:12px;color:var(--text-muted);
-  margin-top:10px;text-align:center;
-}
+.cta-sub{font-size:12px;color:var(--text-muted);margin-top:10px;text-align:center}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ══════════════════════════════════ */
 /* ── HERO ── */
 /* ══════════════════════════════════ */
-.hero{
-  padding:80px 0 60px;
-  text-align:center;
+.hero{padding:72px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:500px;
+  background:radial-gradient(ellipse,rgba(196,26,42,0.05) 0%,transparent 70%);
+  pointer-events:none;
 }
 .hero-title{
   font-family:'Manrope',sans-serif;
-  font-size:clamp(28px,5vw,48px);
-  font-weight:900;
-  line-height:1.12;
-  letter-spacing:-0.8px;
-  color:var(--text);
-  max-width:720px;
-  margin:0 auto 16px;
+  font-size:clamp(28px,5.2vw,50px);
+  font-weight:900;line-height:1.1;
+  letter-spacing:-1px;color:var(--text);
+  max-width:740px;margin:0 auto 16px;
+  position:relative;z-index:1;
 }
-.hero-title em{
-  font-style:normal;
-  color:var(--red-bright);
-}
+.hero-title em{font-style:normal;color:var(--red-bright)}
 .hero-sub{
-  font-size:17px;
-  color:var(--text-soft);
-  line-height:1.7;
-  max-width:560px;
-  margin:0 auto 40px;
+  font-size:17px;color:var(--text-soft);
+  line-height:1.75;max-width:560px;
+  margin:0 auto 40px;position:relative;z-index:1;
 }
-
-/* VSL Player */
-.vsl-wrap{
-  width:100%;max-width:380px;
-  margin:0 auto 32px;
-}
-.vsl-box{
-  width:100%;
-  aspect-ratio:9/16;
-  position:relative;
-  border-radius:20px;
-  overflow:hidden;
-  animation:vsl-glow 4s ease-in-out infinite;
-  border:1px solid var(--border);
-  background:#f0eaf0;
-}
-
-/* CTA hidden block */
-.cta-block{
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  margin-top:32px;
-}
-.cta-block.visible{
-  display:flex;
-  animation:cta-reveal 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
-}
+.hero-cta{position:relative;z-index:1}
 
 /* ══════════════════════════════════ */
-/* ── SOCIAL PROOF BAR ── */
+/* ── PROOF BAR ── */
 /* ══════════════════════════════════ */
 .proof-bar{
-  padding:24px 0;
+  padding:20px 0;
   background:var(--bg-soft);
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
@@ -188,9 +145,7 @@ body{
 }
 .proof-bar p{
   font-family:'Manrope',sans-serif;
-  font-size:14px;font-weight:700;
-  color:var(--text-soft);
-  letter-spacing:0.5px;
+  font-size:14px;font-weight:700;color:var(--text-soft);
 }
 .proof-bar span{color:var(--red-bright);font-weight:800}
 
@@ -199,128 +154,82 @@ body{
 /* ══════════════════════════════════ */
 .testimonials-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-  margin-top:40px;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:40px;
 }
 .testi-card{
   background:var(--bg);
   border:1px solid var(--border);
   border-radius:16px;
-  padding:28px 24px;
-  box-shadow:var(--shadow);
-  transition:transform 0.2s;
+  padding:28px 22px;
+  box-shadow:var(--shadow-sm);
+  transition:transform 0.3s,box-shadow 0.3s;
 }
-.testi-card:hover{transform:translateY(-4px)}
-.testi-top{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:16px;
-}
+.testi-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.testi-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .testi-photo{
-  width:48px;height:48px;
-  border-radius:50%;
-  object-fit:cover;
+  width:44px;height:44px;border-radius:50%;object-fit:cover;
   border:2px solid var(--red-light);
 }
-.testi-name{
-  font-family:'Manrope',sans-serif;
-  font-size:14px;font-weight:700;
-  color:var(--text);
-}
-.testi-age{
-  font-size:12px;color:var(--text-muted);
-}
-.testi-stars{
-  color:var(--red-bright);
-  font-size:12px;letter-spacing:2px;
-}
-.testi-text{
-  font-size:14px;
-  color:var(--text-soft);
-  line-height:1.7;
-  font-style:italic;
-}
+.testi-name{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.testi-age{font-size:11px;color:var(--text-muted)}
+.testi-stars{color:var(--red-bright);font-size:11px;letter-spacing:2px}
+.testi-text{font-size:13.5px;color:var(--text-soft);line-height:1.7;font-style:italic}
 
 /* ══════════════════════════════════ */
 /* ── PROBLEMS ── */
 /* ══════════════════════════════════ */
 .problems-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-  margin-top:36px;
+  grid-template-columns:1fr 1fr;
+  gap:16px;margin-top:36px;
 }
 .problem-card{
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:24px 20px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:14px;padding:24px 20px;
   border-left:3px solid var(--red-bright);
+  transition:transform 0.3s,box-shadow 0.3s;
 }
-.problem-emoji{font-size:24px;margin-bottom:10px}
-.problem-title{
-  font-family:'Manrope',sans-serif;
-  font-size:15px;font-weight:700;
-  color:var(--text);
-  margin-bottom:8px;
-  line-height:1.35;
-}
-.problem-text{
-  font-size:13px;color:var(--text-soft);
-  line-height:1.6;
-}
+.problem-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.problem-emoji{font-size:28px;margin-bottom:10px}
+.problem-title{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.35}
+.problem-text{font-size:13px;color:var(--text-soft);line-height:1.6}
 
 /* ══════════════════════════════════ */
 /* ── STEPS ── */
 /* ══════════════════════════════════ */
-.steps-list{
-  display:flex;flex-direction:column;
-  gap:32px;
-  margin-top:40px;
-}
+.steps-list{display:flex;flex-direction:column;gap:28px;margin-top:40px}
 .step-card{
-  display:flex;
-  gap:24px;
-  align-items:center;
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:28px;
-  box-shadow:var(--shadow);
+  display:flex;gap:28px;align-items:center;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:20px;padding:16px;
+  box-shadow:var(--shadow-sm);
+  transition:transform 0.3s,box-shadow 0.3s;
+  overflow:hidden;
 }
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.step-card:nth-child(even){flex-direction:row-reverse}
 .step-img{
-  width:120px;height:120px;
-  border-radius:12px;
-  object-fit:cover;
-  flex-shrink:0;
+  width:240px;height:240px;
+  border-radius:16px;object-fit:cover;flex-shrink:0;
 }
+.step-content{flex:1;padding:12px 8px}
 .step-number{
+  display:inline-block;
   font-family:'Manrope',sans-serif;
-  font-size:12px;font-weight:800;
-  color:var(--red-bright);
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:6px;
+  font-size:11px;font-weight:800;
+  color:#fff;background:var(--red-bright);
+  padding:4px 12px;border-radius:6px;
+  letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:12px;
 }
-.step-title{
-  font-family:'Manrope',sans-serif;
-  font-size:20px;font-weight:800;
-  color:var(--text);
-  margin-bottom:8px;
-}
-.step-text{
-  font-size:14px;color:var(--text-soft);
-  line-height:1.7;
-}
+.step-title{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.2}
+.step-text{font-size:14px;color:var(--text-soft);line-height:1.75}
 .steps-note{
-  text-align:center;
-  font-size:14px;
-  color:var(--text-muted);
-  font-style:italic;
-  margin-top:28px;
-  padding:16px 24px;
-  background:var(--red-light);
-  border-radius:10px;
+  text-align:center;font-size:14px;color:var(--text-soft);
+  font-style:italic;margin-top:32px;
+  padding:18px 28px;
+  background:var(--red-light);border-radius:12px;
   border:1px solid var(--red-border);
 }
 
@@ -328,377 +237,218 @@ body{
 /* ── BONUS ── */
 /* ══════════════════════════════════ */
 .bonus-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  margin-top:36px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:40px;
 }
 .bonus-card{
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:24px;
-  text-align:center;
-  box-shadow:var(--shadow);
-  position:relative;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:20px;padding:20px;
+  text-align:center;box-shadow:var(--shadow-sm);
+  position:relative;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
 }
+.bonus-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .bonus-badge{
-  position:absolute;top:-10px;right:16px;
-  background:var(--red-bright);
-  color:#fff;
-  font-family:'Manrope',sans-serif;
-  font-size:10px;font-weight:800;
-  padding:4px 10px;
-  border-radius:6px;
-  letter-spacing:0.5px;
+  position:absolute;top:12px;right:12px;
+  background:var(--red-bright);color:#fff;
+  font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;
+  padding:5px 10px;border-radius:8px;letter-spacing:0.3px;
+  z-index:2;
 }
 .bonus-img{
-  width:100%;height:140px;
-  object-fit:contain;
-  margin-bottom:16px;
+  width:100%;height:220px;
+  object-fit:contain;margin-bottom:16px;
+  border-radius:12px;
 }
-.bonus-title{
-  font-family:'Manrope',sans-serif;
-  font-size:16px;font-weight:700;
-  color:var(--text);
-  margin-bottom:8px;
-}
-.bonus-text{
-  font-size:13px;color:var(--text-soft);
-  line-height:1.6;
-}
+.bonus-title{font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px}
+.bonus-text{font-size:13px;color:var(--text-soft);line-height:1.6}
 
 /* ══════════════════════════════════ */
 /* ── SCIENCE ── */
 /* ══════════════════════════════════ */
-.science-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:36px;
-}
+.science-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
 .science-card{
-  display:flex;gap:16px;
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:20px;
-  box-shadow:var(--shadow);
+  border-radius:20px;overflow:hidden;
+  background:var(--bg);border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  transition:transform 0.3s;
 }
-.science-img{
-  width:80px;height:80px;
-  border-radius:10px;
-  object-fit:cover;
-  flex-shrink:0;
-}
-.science-text{
-  font-size:13px;color:var(--text-soft);
-  line-height:1.65;
-}
+.science-card:hover{transform:translateY(-4px)}
+.science-card-img{width:100%;height:220px;object-fit:cover}
+.science-card-body{padding:20px}
+.science-text{font-size:13.5px;color:var(--text-soft);line-height:1.7}
 .quote-box{
-  margin-top:28px;
-  padding:24px 28px;
-  border-left:3px solid var(--red-bright);
-  background:var(--red-light);
-  border-radius:0 12px 12px 0;
+  margin-top:32px;padding:28px 32px;
+  border-left:4px solid var(--red-bright);
+  background:var(--red-light);border-radius:0 16px 16px 0;
 }
-.quote-box p{
-  font-size:16px;font-style:italic;
-  color:var(--text);line-height:1.6;
-}
-.quote-box cite{
-  display:block;margin-top:8px;
-  font-size:13px;color:var(--text-muted);
-  font-style:normal;
-}
+.quote-box p{font-size:17px;font-style:italic;color:var(--text);line-height:1.6}
+.quote-box cite{display:block;margin-top:10px;font-size:13px;color:var(--text-muted);font-style:normal}
 
 /* ══════════════════════════════════ */
 /* ── FOR WHO ── */
 /* ══════════════════════════════════ */
-.forwho-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  margin-top:36px;
+.forwho-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.forwho-col{
+  padding:28px;border-radius:16px;
+  border:1px solid var(--border);
 }
-.forwho-col h3{
-  font-family:'Manrope',sans-serif;
-  font-size:16px;font-weight:800;
-  margin-bottom:16px;
-  display:flex;align-items:center;gap:8px;
-}
+.forwho-col.yes{background:rgba(28,182,34,0.03);border-color:rgba(28,182,34,0.15)}
+.forwho-col.no{background:rgba(196,26,42,0.03);border-color:var(--red-border)}
+.forwho-col h3{font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;margin-bottom:18px}
 .forwho-col.yes h3{color:var(--green)}
 .forwho-col.no h3{color:var(--red-bright)}
 .forwho-list{list-style:none;display:flex;flex-direction:column;gap:12px}
-.forwho-list li{
-  font-size:14px;
-  color:var(--text-soft);
-  line-height:1.6;
-  padding-left:28px;
-  position:relative;
-}
-.forwho-list li::before{
-  position:absolute;left:0;top:2px;
-  font-size:14px;
-}
+.forwho-list li{font-size:14px;color:var(--text-soft);line-height:1.6;padding-left:28px;position:relative}
+.forwho-list li::before{position:absolute;left:0;top:2px;font-size:14px}
 .forwho-col.yes .forwho-list li::before{content:'✅'}
 .forwho-col.no .forwho-list li::before{content:'⚠️'}
 
 /* ══════════════════════════════════ */
-/* ── RECAP + PRICE ── */
+/* ── OFFER / PRICE ── */
 /* ══════════════════════════════════ */
+.offer-mockup{
+  width:100%;max-width:600px;
+  margin:0 auto 40px;
+  animation:float 4s ease-in-out infinite;
+}
+.offer-mockup img{
+  width:100%;border-radius:20px;
+  box-shadow:var(--shadow-lg);
+}
+
 .recap-box{
-  background:var(--bg-soft);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:32px;
-  margin-bottom:40px;
+  background:var(--bg-soft);border:1px solid var(--border);
+  border-radius:16px;padding:32px;margin-bottom:40px;
 }
 .recap-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.recap-list li{
-  font-size:14px;color:var(--text);
-  padding-left:28px;position:relative;
-  line-height:1.5;
-}
-.recap-list li::before{
-  content:'✅';position:absolute;left:0;top:0;font-size:14px;
-}
+.recap-list li{font-size:14px;color:var(--text);padding-left:28px;position:relative;line-height:1.5}
+.recap-list li::before{content:'✅';position:absolute;left:0;top:0;font-size:14px}
 .recap-list li span{color:var(--text-muted);font-size:12px}
 
 .price-box{
-  text-align:center;
-  padding:40px 32px;
+  text-align:center;padding:48px 36px;
   background:var(--bg);
   border:2px solid var(--red-border);
-  border-radius:20px;
-  box-shadow:var(--shadow-lg);
+  border-radius:24px;box-shadow:var(--shadow-lg);
+  position:relative;overflow:hidden;
 }
-.price-old{
-  font-size:16px;color:var(--text-muted);
-  text-decoration:line-through;
-  margin-bottom:4px;
+.price-box::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(196,26,42,0.06),transparent 70%);
+  pointer-events:none;
 }
-.price-label{
-  font-size:14px;color:var(--text-soft);
-  margin-bottom:12px;
-}
-.price-installment{
-  font-family:'Manrope',sans-serif;
-  font-size:18px;font-weight:700;
-  color:var(--text);
-  margin-bottom:4px;
-}
-.price-installment b{font-size:40px;color:var(--red-bright)}
+.price-old{font-size:16px;color:var(--text-muted);text-decoration:line-through;margin-bottom:4px}
+.price-label{font-size:14px;color:var(--text-soft);margin-bottom:12px}
+.price-installment{font-family:'Manrope',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+.price-installment b{font-size:44px;color:var(--red-bright)}
 .price-or{font-size:13px;color:var(--text-muted);margin:8px 0}
-.price-cash{
-  font-family:'Manrope',sans-serif;
-  font-size:32px;font-weight:900;
-  color:var(--text);
-}
+.price-cash{font-family:'Manrope',sans-serif;font-size:36px;font-weight:900;color:var(--text)}
 .price-cash small{font-size:14px;font-weight:500;color:var(--text-muted)}
-.price-note{
-  font-size:12px;color:var(--text-muted);
-  margin-top:8px;font-style:italic;
-}
+.price-note{font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic}
 
 /* ══════════════════════════════════ */
 /* ── GUARANTEE ── */
 /* ══════════════════════════════════ */
 .guarantee-box{
   display:flex;align-items:center;gap:28px;
-  padding:32px;
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  margin-top:40px;
+  padding:32px;background:var(--bg);
+  border:1px solid var(--border);border-radius:20px;
+  box-shadow:var(--shadow);margin-top:40px;
 }
-.guarantee-icon{
-  font-size:56px;flex-shrink:0;
-}
-.guarantee-title{
-  font-family:'Manrope',sans-serif;
-  font-size:20px;font-weight:800;
-  color:var(--text);
-  margin-bottom:8px;
-}
-.guarantee-text{
-  font-size:14px;color:var(--text-soft);
-  line-height:1.7;
-}
+.guarantee-icon{font-size:56px;flex-shrink:0}
+.guarantee-title{font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px}
+.guarantee-text{font-size:14px;color:var(--text-soft);line-height:1.75}
 .guarantee-text b{color:var(--red-bright);font-weight:700}
 
 /* ══════════════════════════════════ */
 /* ── 2 PATHS ── */
 /* ══════════════════════════════════ */
-.paths-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-  margin:40px 0;
-}
-.path-card{
-  padding:28px 24px;
-  border-radius:16px;
-  border:2px solid;
-}
-.path-card.bad{
-  border-color:var(--border);
-  background:var(--bg-soft);
-}
-.path-card.good{
-  border-color:var(--red-bright);
-  background:var(--red-light);
-}
-.path-card h3{
-  font-family:'Manrope',sans-serif;
-  font-size:16px;font-weight:800;
-  margin-bottom:16px;
-}
+.paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:40px 0}
+.path-card{padding:28px 24px;border-radius:20px;border:2px solid;transition:transform 0.3s}
+.path-card:hover{transform:translateY(-4px)}
+.path-card.bad{border-color:var(--border);background:var(--bg-soft)}
+.path-card.good{border-color:var(--red-bright);background:var(--red-light);animation:glow-pulse 3s ease-in-out infinite}
+.path-card h3{font-family:'Manrope',sans-serif;font-size:16px;font-weight:800;margin-bottom:16px}
 .path-card.bad h3{color:var(--text-muted)}
 .path-card.good h3{color:var(--red-bright)}
 .path-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.path-list li{
-  font-size:14px;line-height:1.5;
-  padding-left:24px;position:relative;
-}
+.path-list li{font-size:14px;line-height:1.5;padding-left:24px;position:relative}
 .path-card.bad .path-list li{color:var(--text-muted)}
 .path-card.good .path-list li{color:var(--text)}
 .path-card.bad .path-list li::before{content:'❌';position:absolute;left:0;font-size:12px}
 .path-card.good .path-list li::before{content:'✅';position:absolute;left:0;font-size:12px}
-
-.paths-question{
-  text-align:center;
-  font-family:'Manrope',sans-serif;
-  font-size:20px;font-weight:800;
-  color:var(--text);
-  margin-bottom:24px;
-}
+.paths-question{text-align:center;font-family:'Manrope',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:24px}
 
 /* ══════════════════════════════════ */
 /* ── AUTHOR ── */
 /* ══════════════════════════════════ */
-.author-card{
-  display:flex;gap:28px;
-  align-items:center;
-  margin-top:36px;
-}
-.author-photo{
-  width:140px;height:140px;
-  border-radius:16px;
-  object-fit:cover;
-  flex-shrink:0;
-  border:3px solid var(--red-light);
-}
-.author-name{
-  font-family:'Manrope',sans-serif;
-  font-size:22px;font-weight:800;
-  color:var(--text);
-  margin-bottom:4px;
-}
-.author-role{
-  font-size:13px;color:var(--red-bright);
-  font-weight:600;margin-bottom:12px;
-}
-.author-bio{
-  font-size:14px;color:var(--text-soft);
-  line-height:1.7;
-}
-.author-stats{
-  display:flex;gap:24px;margin-top:16px;
-}
-.author-stat{
-  text-align:center;
-}
-.author-stat-num{
-  font-family:'Manrope',sans-serif;
-  font-size:20px;font-weight:900;
-  color:var(--red-bright);
-}
-.author-stat-label{
-  font-size:11px;color:var(--text-muted);
-}
+.author-card{display:flex;gap:32px;align-items:center;margin-top:40px}
+.author-photo{width:160px;height:160px;border-radius:20px;object-fit:cover;flex-shrink:0;border:3px solid var(--red-light)}
+.author-name{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;color:var(--text);margin-bottom:4px}
+.author-role{font-size:13px;color:var(--red-bright);font-weight:600;margin-bottom:14px}
+.author-bio{font-size:14px;color:var(--text-soft);line-height:1.75}
+.author-stats{display:flex;gap:28px;margin-top:18px}
+.author-stat-num{font-family:'Manrope',sans-serif;font-size:22px;font-weight:900;color:var(--red-bright)}
+.author-stat-label{font-size:11px;color:var(--text-muted)}
 
 /* ══════════════════════════════════ */
 /* ── HOW IT WORKS ── */
 /* ══════════════════════════════════ */
-.how-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  margin-top:36px;
-}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
 .how-card{
-  text-align:center;
-  padding:28px 20px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:14px;
+  text-align:center;padding:32px 20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:20px;
+  transition:transform 0.3s,background 0.3s;
 }
-.how-icon{font-size:32px;margin-bottom:12px}
-.how-title{
-  font-family:'Manrope',sans-serif;
-  font-size:15px;font-weight:700;
-  color:#fff;
-  margin-bottom:8px;
-}
-.how-text{
-  font-size:13px;color:rgba(255,255,255,0.5);
-  line-height:1.6;
-}
+.how-card:hover{transform:translateY(-4px);background:rgba(255,255,255,0.08)}
+.how-icon{font-size:36px;margin-bottom:14px}
+.how-title{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.how-text{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
 
 /* ══════════════════════════════════ */
 /* ── URGENCY ── */
 /* ══════════════════════════════════ */
 .urgency-badge{
   display:inline-flex;align-items:center;gap:6px;
-  background:var(--red-bright);
-  color:#fff;
-  font-family:'Manrope',sans-serif;
-  font-size:11px;font-weight:800;
-  padding:6px 14px;
-  border-radius:6px;
-  letter-spacing:1px;
-  margin-bottom:20px;
+  background:var(--red-bright);color:#fff;
+  font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;
+  padding:6px 14px;border-radius:6px;letter-spacing:1px;margin-bottom:20px;
 }
 
 /* ══════════════════════════════════ */
 /* ── FOOTER ── */
 /* ══════════════════════════════════ */
-.footer{
-  padding:40px 20px;
-  text-align:center;
-  background:var(--bg-soft);
-  border-top:1px solid var(--border);
-}
-.footer p{
-  font-size:12px;color:var(--text-muted);
-  line-height:1.7;
-}
+.footer{padding:40px 20px;text-align:center;background:var(--bg-soft);border-top:1px solid var(--border)}
+.footer p{font-size:12px;color:var(--text-muted);line-height:1.7}
 
 /* ══════════════════════════════════ */
 /* ── RESPONSIVE ── */
 /* ══════════════════════════════════ */
-@media(max-width:640px){
-  .section{padding:52px 0}
-  .step-card{flex-direction:column;text-align:center}
-  .step-img{width:100%;height:160px}
-  .science-grid{grid-template-columns:1fr}
-  .forwho-grid{grid-template-columns:1fr}
-  .paths-grid{grid-template-columns:1fr}
+@media(max-width:700px){
+  .section{padding:56px 0}
+  .step-card,.step-card:nth-child(even){flex-direction:column;text-align:center}
+  .step-img{width:100%;height:220px}
+  .science-grid,.forwho-grid,.paths-grid{grid-template-columns:1fr}
   .how-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .problems-grid{grid-template-columns:1fr}
+  .bonus-grid{grid-template-columns:1fr}
   .author-card{flex-direction:column;text-align:center}
   .guarantee-box{flex-direction:column;text-align:center}
-  .vsl-wrap{max-width:300px}
+  .step-content{padding:4px 0}
 }
 </style>
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 <script>
   window.pixelId = "69c14b9b24398db96c8c2a20";
   var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  a.setAttribute("async","");
+  a.setAttribute("defer","");
+  a.setAttribute("src","https://cdn.utmify.com.br/scripts/pixel/pixel.js");
   document.head.appendChild(a);
 </script>
 </head>
@@ -707,7 +457,7 @@ body{
 <!-- ════════════ HERO ════════════ -->
 <section class="hero">
   <div class="container">
-    <div class="section-tag"><div class="dot"></div> Método Comprovado</div>
+    <div class="red-line"></div>
     <h1 class="hero-title">
       Faça um Homem Querer Você Como a<br>
       <em>Única Opção Da Vida Dele</em><br>
@@ -716,16 +466,7 @@ body{
     <p class="hero-sub">
       Descubra o método que já ajudou mais de 8 mil mulheres a serem escolhidas — sem joguinhos, sem manipulação.
     </p>
-
-    <!-- VSL -->
-    <div class="vsl-wrap">
-      <div class="vsl-box" id="vslBox">
-        <!-- Player injetado via JS -->
-      </div>
-    </div>
-
-    <!-- CTA com delay de 18m40s -->
-    <div class="cta-block" id="ctaBlock">
+    <div class="hero-cta">
       <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">
         QUERO SER ESCOLHIDA PARA SEMPRE →
       </a>
@@ -734,7 +475,7 @@ body{
   </div>
 </section>
 
-<!-- ════════════ SOCIAL PROOF BAR ════════════ -->
+<!-- ════════════ PROOF BAR ════════════ -->
 <div class="proof-bar">
   <p>+<span>8.342</span> mulheres já se tornaram a prioridade absoluta dos seus homens</p>
 </div>
@@ -743,11 +484,11 @@ body{
 <section class="section section-alt">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Resultados Reais</div>
+      <div class="red-line"></div>
       <h2 class="section-title">Relatos de Mulheres Que Foram<br><em>Escolhidas Para Sempre</em></h2>
     </div>
     <div class="testimonials-grid">
-      <div class="testi-card">
+      <div class="testi-card reveal">
         <div class="testi-top">
           <img class="testi-photo" src="images/3205935_1_1753567919688552afaef68406149955.png" alt="Carla">
           <div>
@@ -758,7 +499,7 @@ body{
         </div>
         <p class="testi-text">"A gente já não se conectava como antes. Depois do Escolhida Para Sempre, ele começou a me ouvir de verdade… e a me olhar como no começo."</p>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal">
         <div class="testi-top">
           <img class="testi-photo" src="images/3205935_1_1753567919688552afaf018223848147.png" alt="Júlia">
           <div>
@@ -769,7 +510,7 @@ body{
         </div>
         <p class="testi-text">"Nunca imaginei viver algo assim... Fui pedida em noivado por um homem que me olha como se tivesse encontrado um tesouro."</p>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal">
         <div class="testi-top">
           <img class="testi-photo" src="images/3205935_1_1753567919688552afaf0cd493267184_1.png" alt="Ana">
           <div>
@@ -788,30 +529,14 @@ body{
 <section class="section">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Identificação</div>
+      <div class="red-line"></div>
       <h2 class="section-title">Isso Já <em>Aconteceu Com Você?</em></h2>
     </div>
     <div class="problems-grid">
-      <div class="problem-card">
-        <div class="problem-emoji">💔</div>
-        <p class="problem-title">Ele parecia interessado... mas foi se afastando sem explicação</p>
-        <p class="problem-text">No início era perfeito, mas depois começou a ser mais frio e distante.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-emoji">😔</div>
-        <p class="problem-title">Se sentiu usada depois de se entregar</p>
-        <p class="problem-text">Você se sente descartável e invisível. Achou que ia aproximar vocês, mas ele só se afastou mais.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-emoji">😞</div>
-        <p class="problem-title">Por mais que se esforce, parece que nunca é suficiente</p>
-        <p class="problem-text">Se pegou pensando: "O que ela tem que eu não tenho?"</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-emoji">💔</div>
-        <p class="problem-title">Disse que "não estava pronto"... mas assumiu outra</p>
-        <p class="problem-text">A desculpa que machuca: não estava pronto para você, mas para ela sim.</p>
-      </div>
+      <div class="problem-card reveal"><div class="problem-emoji">💔</div><p class="problem-title">Ele parecia interessado... mas foi se afastando sem explicação</p><p class="problem-text">No início era perfeito, mas depois começou a ser mais frio e distante.</p></div>
+      <div class="problem-card reveal"><div class="problem-emoji">😔</div><p class="problem-title">Se sentiu usada depois de se entregar</p><p class="problem-text">Você se sente descartável e invisível. Achou que ia aproximar vocês, mas ele só se afastou mais.</p></div>
+      <div class="problem-card reveal"><div class="problem-emoji">😞</div><p class="problem-title">Por mais que se esforce, parece que nunca é suficiente</p><p class="problem-text">Se pegou pensando: "O que ela tem que eu não tenho?"</p></div>
+      <div class="problem-card reveal"><div class="problem-emoji">💔</div><p class="problem-title">Disse que "não estava pronto"... mas assumiu outra</p><p class="problem-text">A desculpa que machuca: não estava pronto para você, mas para ela sim.</p></div>
     </div>
   </div>
 </section>
@@ -820,41 +545,25 @@ body{
 <section class="section section-warm">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> O Método</div>
+      <div class="red-line"></div>
       <h2 class="section-title">Os <em>4 Passos</em> Para Ser Escolhida</h2>
     </div>
     <div class="steps-list">
-      <div class="step-card">
-        <img class="step-img" src="images/3205935_1_1753567919688552afaf187596509889.png" alt="Passo 1">
-        <div>
-          <p class="step-number">Passo 1</p>
-          <h3 class="step-title">Faça Ele Se Apegar</h3>
-          <p class="step-text">Aprenda o que faz algumas mulheres grudarem no coração dos homens... e por que outras são facilmente esquecidas.</p>
-        </div>
+      <div class="step-card reveal">
+        <img class="step-img" src="https://i.pinimg.com/736x/e9/8f/de/e98fde87f7e10967785ce0aec08fab1d.jpg" alt="Passo 1">
+        <div class="step-content"><span class="step-number">Passo 1</span><h3 class="step-title">Faça Ele Se Apegar</h3><p class="step-text">Aprenda o que faz algumas mulheres grudarem no coração dos homens... e por que outras são facilmente esquecidas.</p></div>
       </div>
-      <div class="step-card">
-        <img class="step-img" src="images/3205935_1_1753567919688552afbe6ca065481936.png" alt="Passo 2">
-        <div>
-          <p class="step-number">Passo 2</p>
-          <h3 class="step-title">Conquiste a Mente Dele</h3>
-          <p class="step-text">Descubra como os homens pensam e use isso pra criar uma conexão que ele nunca sentiu antes.</p>
-        </div>
+      <div class="step-card reveal">
+        <img class="step-img" src="https://i.pinimg.com/736x/f0/51/d8/f051d8442453e69abaed87ea557bf948.jpg" alt="Passo 2">
+        <div class="step-content"><span class="step-number">Passo 2</span><h3 class="step-title">Conquiste a Mente Dele</h3><p class="step-text">Descubra como os homens pensam e use isso pra criar uma conexão que ele nunca sentiu antes.</p></div>
       </div>
-      <div class="step-card">
-        <img class="step-img" src="images/3205935_1_1753567919688552afbee2a381985511.png" alt="Passo 3">
-        <div>
-          <p class="step-number">Passo 3</p>
-          <h3 class="step-title">Seja Inesquecível</h3>
-          <p class="step-text">Ative um desejo natural e profundo que faz ele sentir sua falta até nos pequenos momentos.</p>
-        </div>
+      <div class="step-card reveal">
+        <img class="step-img" src="https://i.pinimg.com/1200x/39/92/6c/39926cec947327694bdfd2e58ec1bcae.jpg" alt="Passo 3">
+        <div class="step-content"><span class="step-number">Passo 3</span><h3 class="step-title">Seja Inesquecível</h3><p class="step-text">Ative um desejo natural e profundo que faz ele sentir sua falta até nos pequenos momentos.</p></div>
       </div>
-      <div class="step-card">
-        <img class="step-img" src="images/3205935_1_1753567919688552afbf56f455463421.png" alt="Passo 4">
-        <div>
-          <p class="step-number">Passo 4</p>
-          <h3 class="step-title">Vire a Mulher Que Ele Escolhe Pra Sempre</h3>
-          <p class="step-text">Torne-se a mulher que ele prioriza, protege e tem medo real de perder.</p>
-        </div>
+      <div class="step-card reveal">
+        <img class="step-img" src="https://i.pinimg.com/1200x/6e/40/59/6e40592e0d800cdcbd34e11d7961334e.jpg" alt="Passo 4">
+        <div class="step-content"><span class="step-number">Passo 4</span><h3 class="step-title">Vire a Mulher Que Ele Escolhe Pra Sempre</h3><p class="step-text">Torne-se a mulher que ele prioriza, protege e tem medo real de perder.</p></div>
       </div>
     </div>
     <p class="steps-note">Tudo sem joguinhos, manipulação ou mudança de personalidade. Você continua sendo você — só que irresistível.</p>
@@ -865,25 +574,25 @@ body{
 <section class="section">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Presentes</div>
+      <div class="red-line"></div>
       <h2 class="section-title">Além Disso, Você Vai Receber <em>de Presente:</em></h2>
     </div>
     <div class="bonus-grid">
-      <div class="bonus-card">
+      <div class="bonus-card reveal">
         <div class="bonus-badge">R$ 97 GRÁTIS</div>
-        <img class="bonus-img" src="images/3205935_1_1753567919688552afbfe3f493408507.png" alt="Manual">
+        <img class="bonus-img" src="https://i.imgur.com/gHj4c12.png" alt="Manual da Mulher Atraente">
         <h3 class="bonus-title">Manual da Mulher Atraente</h3>
         <p class="bonus-text">Desperte sua confiança natural e aprenda técnicas comprovadas para se tornar irresistível.</p>
       </div>
-      <div class="bonus-card">
+      <div class="bonus-card reveal">
         <div class="bonus-badge">R$ 67 GRÁTIS</div>
-        <img class="bonus-img" src="images/3205935_1_1753567919688552afd4fdc984564747_m.png" alt="Guia">
+        <img class="bonus-img" src="https://i.imgur.com/WSUfSb4.png" alt="Guia do Primeiro Encontro">
         <h3 class="bonus-title">Guia do Primeiro Encontro</h3>
         <p class="bonus-text">Domine a arte dos primeiros encontros com estratégias para causar excelente impressão.</p>
       </div>
-      <div class="bonus-card">
+      <div class="bonus-card reveal">
         <div class="bonus-badge">R$ 47 GRÁTIS</div>
-        <img class="bonus-img" src="images/3205935_1_1753567919688552afbe6ca065481936_1.png" alt="Teste IA">
+        <img class="bonus-img" src="https://i.imgur.com/ORvkYPJ.png" alt="Teste do Pretendente Perfeito">
         <h3 class="bonus-title">Teste do Pretendente Perfeito com IA</h3>
         <p class="bonus-text">Identifique rapidamente se ele tem potencial para relacionamento sério.</p>
       </div>
@@ -895,17 +604,17 @@ body{
 <section class="section section-alt">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Comprovado</div>
+      <div class="red-line"></div>
       <h2 class="section-title">A Ciência do Porquê Isso <em>Funciona de Verdade</em></h2>
     </div>
     <div class="science-grid">
-      <div class="science-card">
-        <img class="science-img" src="images/3205935_1_1753567919688552afd76bb240117827.jpeg" alt="Harvard">
-        <p class="science-text">Estudos da Universidade de Harvard comprovam que atração emocional ativa as mesmas áreas cerebrais do vício. Quando você aplica o método corretamente, ele literalmente se torna "viciado" em você.</p>
+      <div class="science-card reveal">
+        <img class="science-card-img" src="https://i.imgur.com/LMoxX3w.png" alt="Ciência">
+        <div class="science-card-body"><p class="science-text">Estudos da Universidade de Harvard comprovam que atração emocional ativa as mesmas áreas cerebrais do vício. Quando você aplica o método corretamente, ele literalmente se torna "viciado" em você.</p></div>
       </div>
-      <div class="science-card">
-        <img class="science-img" src="images/3205935_1_1753567919688552afd85f3691513561.jpeg" alt="Referências históricas">
-        <p class="science-text">Cleópatra, Marilyn Monroe, Grace Kelly — todas dominavam os princípios de atração emocional profunda. Não era só beleza, era o poder de fazer qualquer homem ficar de joelhos.</p>
+      <div class="science-card reveal">
+        <img class="science-card-img" src="https://i.imgur.com/OhrK5Pw.png" alt="Referências históricas">
+        <div class="science-card-body"><p class="science-text">Cleópatra, Marilyn Monroe, Grace Kelly — todas dominavam os princípios de atração emocional profunda. Não era só beleza, era o poder de fazer qualquer homem ficar de joelhos.</p></div>
       </div>
     </div>
     <div class="quote-box">
@@ -919,10 +628,11 @@ body{
 <section class="section">
   <div class="container">
     <div class="text-center">
+      <div class="red-line"></div>
       <h2 class="section-title">O Escolhida Para Sempre<br><em>É Para Você Que:</em></h2>
     </div>
     <div class="forwho-grid">
-      <div class="forwho-col yes">
+      <div class="forwho-col yes reveal">
         <h3>✅ É para você se:</h3>
         <ul class="forwho-list">
           <li>Quer parar de ser "mais uma" na vida dele e ser a prioridade absoluta</li>
@@ -932,7 +642,7 @@ body{
           <li>Quer ser amada e valorizada sem implorar por atenção</li>
         </ul>
       </div>
-      <div class="forwho-col no">
+      <div class="forwho-col no reveal">
         <h3>⚠️ NÃO é para você se:</h3>
         <ul class="forwho-list">
           <li>Busca joguinhos de manipulação ou quer mudar completamente sua personalidade</li>
@@ -942,12 +652,17 @@ body{
   </div>
 </section>
 
-<!-- ════════════ RECAP + PRICE ════════════ -->
+<!-- ════════════ OFFER ════════════ -->
 <section class="section section-warm">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Resumo</div>
+      <div class="red-line"></div>
       <h2 class="section-title">Recapitulando O Que<br><em>Você Vai Receber:</em></h2>
+    </div>
+
+    <!-- PRODUCT MOCKUP -->
+    <div class="offer-mockup">
+      <img src="https://i.imgur.com/0LKgabR.png" alt="Escolhida Para Sempre — Conteúdo Completo">
     </div>
 
     <div class="recap-box">
@@ -970,14 +685,11 @@ body{
       <p class="price-cash">R$ 67 <small>à vista</small></p>
       <p class="price-note">Menos que 1 mês de Netflix</p>
       <div style="margin-top:28px">
-        <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">
-          QUERO SER ESCOLHIDA PARA SEMPRE →
-        </a>
+        <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">QUERO SER ESCOLHIDA PARA SEMPRE →</a>
         <p class="cta-sub">Acesso imediato após a confirmação do pagamento</p>
       </div>
     </div>
 
-    <!-- GUARANTEE -->
     <div class="guarantee-box">
       <div class="guarantee-icon">🛡️</div>
       <div>
@@ -992,33 +704,16 @@ body{
 <section class="section">
   <div class="container">
     <div class="text-center">
+      <div class="red-line"></div>
       <h2 class="section-title">Você Tem <em>2 Caminhos</em> Agora:</h2>
     </div>
     <div class="paths-grid">
-      <div class="path-card bad">
-        <h3>❌ Continuar Sendo Ignorada</h3>
-        <ul class="path-list">
-          <li>Ser mais uma na vida dele</li>
-          <li>Se esforçar e não ser valorizada</li>
-          <li>Viver com medo de ser trocada</li>
-          <li>Nunca se sentir suficiente</li>
-        </ul>
-      </div>
-      <div class="path-card good">
-        <h3>✅ Se Tornar a Escolhida</h3>
-        <ul class="path-list">
-          <li>Ser a mulher que ele prioriza acima de todas</li>
-          <li>Criar um vínculo emocional profundo</li>
-          <li>Ter controle sobre sua vida amorosa</li>
-          <li>Saber exatamente como despertar atração</li>
-        </ul>
-      </div>
+      <div class="path-card bad reveal"><h3>❌ Continuar Sendo Ignorada</h3><ul class="path-list"><li>Ser mais uma na vida dele</li><li>Se esforçar e não ser valorizada</li><li>Viver com medo de ser trocada</li><li>Nunca se sentir suficiente</li></ul></div>
+      <div class="path-card good reveal"><h3>✅ Se Tornar a Escolhida</h3><ul class="path-list"><li>Ser a mulher que ele prioriza acima de todas</li><li>Criar um vínculo emocional profundo</li><li>Ter controle sobre sua vida amorosa</li><li>Saber exatamente como despertar atração</li></ul></div>
     </div>
     <p class="paths-question">A decisão está nas suas mãos. Qual você escolhe?</p>
     <div class="text-center">
-      <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">
-        QUERO SER ESCOLHIDA PARA SEMPRE →
-      </a>
+      <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">QUERO SER ESCOLHIDA PARA SEMPRE →</a>
     </div>
   </div>
 </section>
@@ -1027,28 +722,19 @@ body{
 <section class="section section-alt">
   <div class="container">
     <div class="text-center">
-      <div class="section-tag mx-auto"><div class="dot"></div> Autoridade</div>
-      <h2 class="section-title">Quem é <em>Cardoso Mundo</em></h2>
+      <div class="red-line"></div>
+      <h2 class="section-title">Quem é <em>Pedro Machado</em></h2>
     </div>
-    <div class="author-card">
-      <img class="author-photo" src="images/3205935_1_1753567919688552afca270876131643.jpeg" alt="Cardoso Mundo">
+    <div class="author-card reveal">
+      <img class="author-photo" src="https://img.freepik.com/fotos-premium/homem-bonito-com-cabelo-arrumado-empresario-com-relogio-de-pulso-homens-na-moda-com-relogio-de-pulso_545934-14856.jpg" alt="Pedro Machado">
       <div>
-        <h3 class="author-name">Cardoso Mundo</h3>
+        <h3 class="author-name">Pedro Machado</h3>
         <p class="author-role">Mentor · Cristão · Terapeuta · Desenvolvedor de Pessoas</p>
-        <p class="author-bio">Cardoso Mundo é um dos maiores nomes em desenvolvimento pessoal no Brasil. Já impactou mais de 3 milhões de seguidores e guiou mais de 40 mil alunos em jornadas de transformação. Já ajudou mais de 25 mil mulheres a conquistarem o relacionamento dos sonhos através de métodos baseados em neurociência e psicologia comportamental.</p>
+        <p class="author-bio">Pedro Machado é um dos maiores nomes em desenvolvimento pessoal no Brasil. Já impactou mais de 3 milhões de seguidores e guiou mais de 40 mil alunos em jornadas de transformação. Já ajudou mais de 25 mil mulheres a conquistarem o relacionamento dos sonhos através de métodos baseados em neurociência e psicologia comportamental.</p>
         <div class="author-stats">
-          <div class="author-stat">
-            <p class="author-stat-num">3M+</p>
-            <p class="author-stat-label">seguidores</p>
-          </div>
-          <div class="author-stat">
-            <p class="author-stat-num">40k+</p>
-            <p class="author-stat-label">alunos</p>
-          </div>
-          <div class="author-stat">
-            <p class="author-stat-num">25k+</p>
-            <p class="author-stat-label">mulheres ajudadas</p>
-          </div>
+          <div class="author-stat"><p class="author-stat-num">3M+</p><p class="author-stat-label">seguidores</p></div>
+          <div class="author-stat"><p class="author-stat-num">40k+</p><p class="author-stat-label">alunos</p></div>
+          <div class="author-stat"><p class="author-stat-num">25k+</p><p class="author-stat-label">mulheres ajudadas</p></div>
         </div>
       </div>
     </div>
@@ -1059,24 +745,13 @@ body{
 <section class="section section-dark">
   <div class="container">
     <div class="text-center">
+      <div class="red-line"></div>
       <h2 class="section-title" style="color:#fff">Como Funciona <em>o Acesso</em></h2>
     </div>
     <div class="how-grid">
-      <div class="how-card">
-        <div class="how-icon">🔒</div>
-        <h3 class="how-title">Pagamento Seguro</h3>
-        <p class="how-text">Checkout 100% seguro com criptografia SSL. Aceitamos cartão, PIX e boleto.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-icon">⚡</div>
-        <h3 class="how-title">Acesso Imediato</h3>
-        <p class="how-text">Dados de login enviados para seu email em até 5 minutos após a confirmação.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-icon">📱</div>
-        <h3 class="how-title">Material Disponível Hoje</h3>
-        <p class="how-text">Você pode consumir o conteúdo e já colocar em prática agora mesmo.</p>
-      </div>
+      <div class="how-card"><div class="how-icon">🔒</div><h3 class="how-title">Pagamento Seguro</h3><p class="how-text">Checkout 100% seguro com criptografia SSL. Aceitamos cartão, PIX e boleto.</p></div>
+      <div class="how-card"><div class="how-icon">⚡</div><h3 class="how-title">Acesso Imediato</h3><p class="how-text">Dados de login enviados para seu email em até 5 minutos após a confirmação.</p></div>
+      <div class="how-card"><div class="how-icon">📱</div><h3 class="how-title">Material Disponível Hoje</h3><p class="how-text">Você pode consumir o conteúdo e já colocar em prática agora mesmo.</p></div>
     </div>
   </div>
 </section>
@@ -1086,15 +761,11 @@ body{
   <div class="container text-center">
     <div class="urgency-badge">🚨 ATENÇÃO</div>
     <h2 class="section-title">Esta Oferta Pode Sair<br><em>do Ar em Breve</em></h2>
-    <p class="section-sub mx-auto" style="margin-bottom:32px">
-      Devido ao alto número de acessos, limitamos alguns acessos a esta oferta especial. Aproveite o desconto hoje.
-    </p>
+    <p class="section-sub mx-auto" style="margin-bottom:32px">Devido ao alto número de acessos, limitamos alguns acessos a esta oferta especial. Aproveite o desconto hoje.</p>
     <p class="price-installment" style="margin-bottom:4px">12x de <b>R$ 6,90</b></p>
     <p class="price-or">ou <strong>R$ 67 à vista</strong></p>
     <div style="margin-top:24px">
-      <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">
-        QUERO SER ESCOLHIDA PARA SEMPRE →
-      </a>
+      <a href="https://go.perfectpay.com.br/PPU38CQA37T" class="cta-btn">QUERO SER ESCOLHIDA PARA SEMPRE →</a>
       <p class="cta-sub">Acesso imediato · Garantia 7 dias · Pagamento seguro</p>
     </div>
   </div>
@@ -1109,35 +780,18 @@ body{
 
 <!-- ════════════ SCRIPTS ════════════ -->
 <script>
+// Scroll reveal animation
 (function(){
-  // Injeta player Vturb
-  var box = document.getElementById('vslBox');
-  var player = document.createElement('vturb-smartplayer');
-  player.id = 'vid-69d3c588d1523c28395b25a1';
-  player.style.cssText = 'display:block;width:100%;height:100%;position:absolute;inset:0;z-index:4;';
-  box.appendChild(player);
-  var s = document.createElement('script');
-  s.src = 'https://scripts.converteai.net/6deab618-46ba-49a5-9e08-96b6dc8d25d5/players/69d3c588d1523c28395b25a1/v4/player.js';
-  s.async = true;
-  document.head.appendChild(s);
-
-  // CTA delay: 18m40s = 1120s
-  var DELAY = 18 * 60 + 40;
-  var shown = false;
-  function showCta(){
-    if(shown) return;
-    shown = true;
-    document.querySelectorAll('.cta-block').forEach(function(el){
-      el.classList.add('visible');
+  var els = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
-  }
-  setTimeout(showCta, DELAY * 1000);
-  window.addEventListener('message', function(e){
-    try{
-      var d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-      if(d && d.currentTime && d.currentTime >= DELAY) showCta();
-    }catch(err){}
-  });
+  },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){observer.observe(el)});
 })();
 </script>
 
